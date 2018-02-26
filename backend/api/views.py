@@ -1,6 +1,6 @@
 import json
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
@@ -32,10 +32,19 @@ def symptoms(request):
 def diagnosis(request):
     if request.method == 'GET':
         symptom_id = request.GET.get('symptom')
+
+        # Error if no symptom provided
+        if not symptom_id:
+            return HttpResponseBadRequest()
     elif request.method == 'POST':
         post_data = json.loads(request.body.decode('utf8'))
         symptom_id = post_data.get('symptom')
         diagnosis_id = post_data.get('diagnosis')
+
+        # Error if args don't exist
+        if not symptom_id or not diagnosis_id:
+            return HttpResponseBadRequest()
+
         diagnosis = Diagnosis.objects.get(id=diagnosis_id)
         # Add one to the frequency of the posted diagnosis
         diagnosis.frequency += 1
