@@ -21,4 +21,12 @@ I also included `django-cors-headers` instead of setting up nginx or something, 
 
 ### React
 
-I used `create-react-app` to set up the environment because I didn't want to mess around with configuration for too long.
+I used `create-react-app` to set up the environment because I didn't want to mess around with configuration for too long. Remember to `yarn install` (or `npm i`).
+
+## Running
+
+For the backend, first activate virtualenv if you're using it.
+Then, `cd backend; python ./manage.py runserver`
+That will start the Django dev server on port `8000`, leave it running.
+
+For the frontend, you can do `yarn run start` (or `npm run start`) to start the webpack dev server on port `3000`. If you want it built instead, it's `yarn run build`, which goes into the `build` directory. For a quick server, you can just do `python -m http.server 8080` in `build`.
