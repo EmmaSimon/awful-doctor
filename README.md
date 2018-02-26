@@ -38,7 +38,7 @@ Most of the data is keyed by ID for easier access on the frontend, and to preven
 
 ### `api/symptoms`
 
-#### `GET`:
+#### `GET`
 
 ```
 {
@@ -66,7 +66,10 @@ Most of the data is keyed by ID for easier access on the frontend, and to preven
 
 ### `api/diagnosis`
 
-#### `GET` (params - `symptom`: symptom ID):
+#### `GET`
+Params:
+
+* `symptom`: symptom ID
 
 ```
 {
@@ -98,7 +101,7 @@ Most of the data is keyed by ID for easier access on the frontend, and to preven
 
 #### `POST`
 
-Body:
+Body (JSON):
 ```
 {
     "symptom": 2, // Symptom ID
