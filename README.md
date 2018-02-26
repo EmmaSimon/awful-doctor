@@ -30,3 +30,79 @@ Then, `cd backend; python ./manage.py runserver`
 That will start the Django dev server on port `8000`, leave it running.
 
 For the frontend, you can do `yarn run start` (or `npm run start`) to start the webpack dev server on port `3000`. If you want it built instead, it's `yarn run build`, which goes into the `build` directory. For a quick server, you can just do `python -m http.server 8080` in `build`.
+
+
+## APIs
+
+Most of the data is keyed by ID for easier access on the frontend, and to prevent the storing of duplicate data in redux, since any one symptoms or sicknesses can appear in any number of diagnoses.
+
+### `api/symptoms`
+
+#### `GET`:
+
+```
+{
+    "symptom_ids": [
+        1,
+        2,
+        3
+    ],
+    "symptoms": {
+        "1": {
+            "name": "sore throat",
+            "id": 1
+        },
+        "2": {
+            "name": "itchy rash",
+            "id": 2
+        },
+        "3": {
+            "name": "runny nose",
+            "id": 3
+        }
+    }
+}
+```
+
+### `api/diagnosis`
+
+#### `GET` (params - `symptom`: symptom ID):
+
+```
+{
+    "diagnoses": {
+        "1": {
+            "sickness_id": 1,
+            "id": 1,
+            "frequency": 5,
+            "symptom_id": 1
+        },
+        ...
+    },
+    "sickness": {
+        "1": {
+            "name": "common cold",
+            "id": 1
+        },
+        ...
+    },
+    // ID of the most likely diagnosis
+    "most_likely": 1,
+    // Sorted by frequency, then alphabetically
+    "diagnosis_ids": [
+        1,
+        ...
+    ]
+}
+```
+
+#### `POST`
+
+Body:
+```
+{
+    "symptom": 2, // Symptom ID
+    "diagnosis": 3, // Diagnosis ID
+}
+```
+Returns the same data as the `GET` request
