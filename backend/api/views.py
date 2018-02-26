@@ -1,10 +1,13 @@
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
 from api.models import Symptom, Diagnosis
 from api.utils import diagnosis_data_for_symptom
 
 
+# These are CSRF exempt only for development, this shouldn't go into production
+@csrf_exempt
 @require_http_methods(["GET"])
 def symptoms(request):
     symptoms = Symptom.objects.values()
@@ -22,6 +25,7 @@ def symptoms(request):
     })
 
 
+@csrf_exempt
 @require_http_methods(["GET", "POST"])
 def diagnosis(request):
     if request.method == 'GET':
