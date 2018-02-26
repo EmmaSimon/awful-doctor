@@ -24,13 +24,12 @@ export const getSymptoms = () => (
   )
 );
 
-
 // Diagnosis
 
 const loadDiagnoses = meta => ({ type: 'LOAD_DIAGNOSES', meta });
 export const getDiagnoses = symptomId => (
   dispatch => (
-    axios.get('/api/daignosis', {
+    axios.get('/api/diagnosis', {
       params: { symptom: symptomId },
     })
       .then((response) => {
@@ -44,13 +43,13 @@ export const getDiagnoses = symptomId => (
 );
 
 const acceptDiagnosisAction = diagnosisId => ({
-  action: 'ACCEPT_DIAGNOSIS',
+  type: 'ACCEPT_DIAGNOSIS',
   meta: { diagnosisId },
 });
 export const acceptDiagnosis = (symptomId, diagnosisId) => (
   (dispatch) => {
     dispatch(acceptDiagnosisAction(diagnosisId));
-    return axios.post('/api/daignosis', {
+    return axios.post('/api/diagnosis', {
       symptom: symptomId,
       diagnosis: diagnosisId,
     })
