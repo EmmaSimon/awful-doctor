@@ -39,7 +39,11 @@ class ConfirmDiagnosis extends Component {
           }. Does that seem right?`}
         </p>
         <Button
-          label="That seems right"
+          label="I'm not sure..."
+          onClick={() => (actions.continueTo(2))}
+        />
+        <Button
+          label="Yes"
           onClick={() => {
             actions.acceptDiagnosis(
               selectedSymptomId,
@@ -47,10 +51,6 @@ class ConfirmDiagnosis extends Component {
             );
             return actions.continueTo(3);
           }}
-        />
-        <Button
-          label="I'm not sure..."
-          onClick={() => (actions.continueTo(2))}
         />
       </div>
     );
