@@ -7,7 +7,19 @@ from api.utils import diagnosis_data_for_symptom
 
 @require_http_methods(["GET"])
 def symptoms(request):
-    return JsonResponse({'symptoms': list(Symptom.objects.values())})
+    symptoms = Symptom.objects.values()
+    return JsonResponse({
+        # Object of symptoms keyed by id, for accessing on the frontend
+        'symptoms': {
+            symptom.get('id'): symptom
+            for symptom in symptoms
+        },
+        # List of diagnoses ordered by frequency then sickness name
+        'symptom_ids': [
+            symptom.get('id')
+            for symptom in symptoms
+        ],
+    })
 
 
 @require_http_methods(["GET", "POST"])
