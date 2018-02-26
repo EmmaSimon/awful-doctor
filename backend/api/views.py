@@ -36,7 +36,6 @@ def diagnosis(request):
         post_data = json.loads(request.body.decode('utf8'))
         symptom_id = post_data.get('symptom')
         diagnosis_id = post_data.get('diagnosis')
-        print(diagnosis_id)
         diagnosis = Diagnosis.objects.get(id=diagnosis_id)
         # Add one to the frequency of the posted diagnosis
         diagnosis.frequency += 1
