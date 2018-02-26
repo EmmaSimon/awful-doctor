@@ -5,10 +5,18 @@ class Symptom(models.Model):
     """A physical symptom of a sickness"""
     name = models.CharField(max_length=50)
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.strip()
+        super().save(*args, **kwargs)
+
 
 class Sickness(models.Model):
     """A sickness that might cause a symptom"""
     name = models.CharField(max_length=50)
+
+    def save(self, *args, **kwargs):
+        self.name = self.name.strip()
+        super().save(*args, **kwargs)
 
 
 class Diagnosis(models.Model):

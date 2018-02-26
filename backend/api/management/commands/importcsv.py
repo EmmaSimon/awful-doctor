@@ -15,13 +15,13 @@ class Command(BaseCommand):
                 symptom, *sicknesses = row
                 print('adding Symptom: {}'.format(symptom))
                 symptom_obj, _ = Symptom.objects.get_or_create(
-                    name=symptom.strip()
+                    name=symptom
                 )
 
                 for sickness in sicknesses:
                     print('adding Sickness: {}'.format(sickness))
                     sickness_obj, _ = Sickness.objects.get_or_create(
-                        name=sickness.strip()
+                        name=sickness
                     )
                     print('adding Diagnosis: {} -> {}'.format(
                         sickness, symptom
