@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
@@ -31,10 +33,13 @@ def diagnosis(request):
     if request.method == 'GET':
         symptom_id = request.GET.get('symptom')
     elif request.method == 'POST':
-        symptom_id = request.POST.get('symptom')
-        diagnosis_id = request.POST.get('diagnosis')
-        diagnosis = Diagnosis.objects.filter(id=diagnosis_id)
+        post_data = json.loads(request.body.decode('utf8'))
+        symptom_id = post_data.get('symptom')
+        diagnosis_id = post_data.get('diagnosis')
+        print(diagnosis_id)
+        diagnosis = Diagnosis.objects.get(id=diagnosis_id)
         # Add one to the frequency of the posted diagnosis
-        diagnosis.update(frequency=diagnosis[0].frequency + 1)
+        diagnosis.frequency += 1
+        diagnosis.save()
 
     return JsonResponse(diagnosis_data_for_symptom(symptom_id))
