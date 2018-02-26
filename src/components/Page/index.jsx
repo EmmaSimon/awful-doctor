@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import './index.css';
 
 import {
-  SelectSymptom,
   ConfirmDiagnosis,
   DiagnosisReport,
+  SelectDiagnosis,
+  SelectSymptom,
 } from '../Steps';
 import { StartOver } from '../Components/Button';
 
@@ -23,6 +24,9 @@ class App extends Component {
         break;
       case 1:
         step = <ConfirmDiagnosis />;
+        break;
+      case 2:
+        step = <SelectDiagnosis />;
         break;
       case 3:
         step = <DiagnosisReport />;
