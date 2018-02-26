@@ -1,0 +1,9 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "require-jsdoc": "off"
+    },
+    "env": {
+    	"browser": true
+    }
+}
