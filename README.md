@@ -16,6 +16,8 @@ An `importcsv` command is included to grab the data from `symptoms.csv` and put 
 
 `SECRET_KEY` is kept the default since this isn't a production environment, but usually it wouldn't be committed.
 
+I also included `django-cors-headers` instead of setting up nginx or something, so that the webpack dev server and django runserver could just talk directly to each other.
+
 
 ### React
 
