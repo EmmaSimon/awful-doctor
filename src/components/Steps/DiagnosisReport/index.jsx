@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import { Actions } from '../../../store';
 
 
 class DiagnosisReport extends Component {
   render() {
     const {
-      actions,
       app,
       symptom,
       diagnosis,
@@ -55,7 +51,4 @@ const mapStateToProps = state => ({
   diagnosis: state.diagnosis,
   sickness: state.sickness,
 });
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(Actions, dispatch),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(DiagnosisReport);
+export default connect(mapStateToProps)(DiagnosisReport);
