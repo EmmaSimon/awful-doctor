@@ -4,11 +4,11 @@ It's very bad at it.
 
 ## Setup
 
-This project uses Django with SQLite and React.
+This project uses Django with SQLite and React with Redux.
 
 ### Django
 
-I used virtualenv to install Django, but you can use a system wide installation if you have one.
+I used [virtualenv](https://virtualenv.pypa.io/en/stable/) to install Django, but you can use a system wide installation if you have one. I'm using Python 3, so if Python 2 is your default version, replace `python` with `python3` and `pip` with `pip3`. Run `pip install -r ./requirements.txt` to install all the dependencies. You might have to use sudo if you're not using virtualenv.
 
 You'll need to run `python ./manage.py migrate` to run Django's database migration stuff.
 
